@@ -187,6 +187,8 @@ local function XHZUC_fake_script() -- SpeedChangerGuibyVizev.LocalScript
 	local confirm = thisImage.Confirm
 	
 	game.StarterGui:SetCore("DevConsoleVisible", true)
+
+	warn'made by vizev!'
 end
 coroutine.wrap(XHZUC_fake_script)()
 local function IVKEGP_fake_script() -- SpeedChangerGuibyVizev.LocalScript 
