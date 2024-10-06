@@ -186,7 +186,7 @@ local function XHZUC_fake_script() -- SpeedChangerGuibyVizev.LocalScript
 	local speedBox = thisImage.Speed
 	local confirm = thisImage.Confirm
 	
-	game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/console")
+	game.StarterGui:SetCore("DevConsoleVisible", true)
 end
 coroutine.wrap(XHZUC_fake_script)()
 local function IVKEGP_fake_script() -- SpeedChangerGuibyVizev.LocalScript 
