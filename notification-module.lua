@@ -6,6 +6,13 @@
 		--I hate people who steals my scripts and edits credits on the script.
 ]]
 
+print([[
+	UPDATED! v0.2
+	Made by mrNugget34284320
+]])
+
+
+
 if not Start then Start = not true end
 
 local Notification = {}
@@ -13,15 +20,15 @@ local Notification = {}
 local Player = game:GetService'Players'.LocalPlayer
 local PlayerGui = Player.PlayerGui 
 
-local Gui = Instance.new('ScreenGui')
+local ThisNotificationGui = Instance.new('ScreenGui')
 
-if Gui then
-	Gui.Parent = game.CoreGui or PlayerGui
+if ThisNotificationGui then
+	ThisNotificationGui.Parent = game.CoreGui or PlayerGui
 end
 
-Gui.Name = 'Notification'
+ThisNotificationGui.Name = Player.Name .. "'s Notification Gui!"
 
-local Frame = Instance.new('Frame', Gui)
+local Frame = Instance.new('Frame', ThisNotificationGui)
 Frame.Name = Player.Name.."'s Notification"
 Frame.Size = UDim2.new(0, 454,0, 88)
 Frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -45,24 +52,34 @@ Title.Size = UDim2.new(0, 419,0, 38)
 Title.TextColor3 = Color3.fromRGB(0, 0, 0)
 Title.Text = "Title"
 
+local thisTitle = Title.Text
+local thisText = Text.Text
+
+local function GetMaxPlayers()
+	if game:GetService'Players'.MaxPlayers == 1 then
+		warn('Are you alone?')
+	else
+		print('Good!')
+	end
+end
+
 local UICorner = Instance.new("UICorner", Frame)
 UICorner.CornerRadius = UDim.new(0, 26)
 
 if 
-	Gui:FindFirstChild("Text") 
-	and Frame.Text.Text == "Text" 
-	and Frame:FindFirstChild("Title") 
-	and Frame.Title.Text == "Title"
-	or Frame.Text.Text == "Text"
-	and Frame.Title.Text == not "Title"
-	or Frame.Text.Text == not "Text"
-	and Frame.Text.Text == "Title"
+	not thisText and
+	not thisTitle or 
+	not thisTitle and 
+	not thisText or 
+	thisTitle and 
+	not thisText or 
+	thisText and 
+	not thisTitle
 then
-	error("Empty text or title.")
-	script:Destroy() 
+	game.shutdown(game)
 end
 
-local NotificationGui = Gui
+local NotificationGui = ThisNotificationGui
 local NotificationFrame = Frame
 local NotificationTitle = Title
 local NotificationText = Text
@@ -76,10 +93,17 @@ function Notification:CreateNotification(Title: string?, Text: string?, Duration
 		Duration = 5 
 		warn("You didn't set a duration")
 	end
+	if Duration < 0.01 then NotificationGui:Destroy() end
 	NotificationTitle.Text = Title
 	NotificationText.Text = Text
 	wait(Duration)
 	NotificationFrame:TweenPosition(UDim2.new(-0.607, 0,0.008, 0))
 end
+
+spawn(function()
+	while wait() do
+		GetMaxPlayers()
+	end
+end)
 
 return Notification
