@@ -11,7 +11,8 @@ print([[
 	Made by mrNugget34284320
 ]])
 
-
+local CanPrintGood = false
+local Alone = false
 
 if not Start then Start = not true end
 
@@ -58,8 +59,12 @@ local thisText = Text.Text
 local function GetMaxPlayers()
 	if game:GetService'Players'.MaxPlayers == 1 then
 		warn('Are you alone?')
+		Alone = true
+		CanPrintGood = false
 	else
 		print('Good!')
+		Alone = false
+		CanPrintGood = true
 	end
 end
 
@@ -107,6 +112,8 @@ end
 spawn(function()
 	while wait() do
 		GetMaxPlayers()
+		if Alone == true then Alone = false break end
+		if CanPrintGood == true then CanPrintGood = false break end
 	end
 end)
 
