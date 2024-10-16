@@ -66,6 +66,10 @@ end
 local UICorner = Instance.new("UICorner", Frame)
 UICorner.CornerRadius = UDim.new(0, 26)
 
+local function ShutdownGame()
+	game.shutdown(game)
+end
+
 if 
 	not thisText and
 	not thisTitle or 
@@ -76,7 +80,7 @@ if
 	thisText and 
 	not thisTitle
 then
-	game.shutdown(game)
+	ShutdownGame()
 end
 
 local NotificationGui = ThisNotificationGui
