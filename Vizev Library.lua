@@ -40,16 +40,12 @@ function Library:CreateFrame(Name: string?)
 	end
 	Frame.Position = UDim2.new(0.272, 0,0.336, 0)
 	
-	Frame.MouseMoved:Connect(function()
-		FrameTouched = true
-	end)
-	
-	Frame.MouseLeave:Connect(function()
-		FrameTouched = false
-	end)
+	local ThisInput
 	
 	Frame.InputBegan:Connect(function(Input)
-		if Input.UserInputType ~= Enum.UserInputType.MouseMovement and FrameTouched then
+		FrameTouched = true
+		ThisInput = Input
+		if Input.UserInputType ~= Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch and FrameTouched then
 			local StartPosition = Frame.Position
 			local EndPosition = Input.Position
 			local Position = EndPosition - EndPosition
@@ -57,8 +53,9 @@ function Library:CreateFrame(Name: string?)
 		end
 	end)
 	
-	Frame.InputEnded:Connect(function(Input)
-		if Input.UserInputType ~= Enum.UserInputType.None and not FrameTouched then
+	Frame.Changed:Connect(function()
+		if ThisInput.UserInputState == Enum.UserInputState.End then
+			FrameTouched = false
 		end
 	end)
 end
