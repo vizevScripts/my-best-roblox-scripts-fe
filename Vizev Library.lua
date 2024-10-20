@@ -25,10 +25,10 @@ end
 
 function Library:CreateFrame(Name: string?)
 	local AllowedToStart = true
+	local FrameTouched = false
 	
 	local Frame = Instance.new("Frame", Library.LocalLibrary)
 	Frame.Name = Name
-	if not Name then Frame.Name = "Just a frame!!! XD" end
 	Frame.Size = UDim2.new(0, 0, 0, 0)
 	Frame.BackgroundColor3 = Color3.fromRGB(83, 83, 83)
 	
@@ -40,20 +40,24 @@ function Library:CreateFrame(Name: string?)
 	end
 	Frame.Position = UDim2.new(0.272, 0,0.336, 0)
 	
-	local FrameUICorner = Instance.new("UICorner", Frame)
-	FrameUICorner.CornerRadius = UDim.new(0, 16)
-	
-	Frame.Draggable = true
-	
-	local UIDrag = Instance.new("UIDragDetector", Frame)
-	UIDrag.Enabled = true
-	
-	UIDrag.DragStart:Connect(function(Position)
-		Frame.AbsolutePosition = Position
+	Frame.MouseMoved:Connect(function()
+		FrameTouched = true
 	end)
 	
-	UIDrag.DragEnd:Connect(function()
-		Frame.AbsolutePosition = Frame.AbsolutePosition
+	Frame.MouseLeave:Connect(function()
+		FrameTouched = false
+	end)
+	
+	Frame.InputBegan:Connect(function(Input)
+		if Input.UserInputType ~= Enum.UserInputType.MouseMovement and FrameTouched then
+			Frame.Position = Input.Position
+		end
+	end)
+	
+	Frame.InputEnded:Connect(function(Input)
+		if Input.UserInputType ~= Enum.UserInputType.None and not FrameTouched then
+			Frame.Position = Frame.Position
+		end
 	end)
 end
 
@@ -61,4 +65,5 @@ function Library:DestroyLibrary()
 	wait(0.25)
 	Library.LocalLibrary:Destroy()
 end
+
 return Library
