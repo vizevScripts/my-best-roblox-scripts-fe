@@ -50,7 +50,9 @@ function Library:CreateFrame(Name: string?)
 	
 	Frame.InputBegan:Connect(function(Input)
 		if Input.UserInputType ~= Enum.UserInputType.MouseMovement and FrameTouched then
-			Frame.Position = UDim2.new(Input.Position.X + 0.11, Input.Position.Y + 0.11, Input.Position.Z + 0.66)
+			Frame.Position.X = Input.Position.X
+			Frame.Position.Y = Input.Position.Y
+			Frame.Position.Z = Input.Position.Z
 		end
 	end)
 	
