@@ -53,7 +53,7 @@ function Library:CreateFrame(Name: string?)
 			local StartPosition = Frame.Position
 			local EndPosition = Input.Position
 			local Position = EndPosition - EndPosition
-			Frame.Position = UDim2.new(StartPosition.X.Scale, StartPosition.X.Offset + EndPosition.X, StartPosition.Y.Offset + EndPosition.Y)
+			Frame.Position = UDim2.new(StartPosition.X.Scale, StartPosition.X.Offset + EndPosition.X, StartPosition.Y.Scale, StartPosition.Y.Offset + EndPosition.Y)
 		end
 	end)
 	
