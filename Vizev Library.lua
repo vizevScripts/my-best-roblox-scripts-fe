@@ -43,9 +43,9 @@ function Library:CreateFrame(Name: string?)
 	local ThisInput
 	
 	Frame.InputBegan:Connect(function(Input)
-		FrameTouched = true
 		ThisInput = Input
-		if Input.UserInputType ~= Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch and FrameTouched then
+		if Input.UserInputType ~= Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch and not FrameTouched then
+			FrameTouched = true
 			local StartPosition = Frame.Position
 			local EndPosition = Input.Position
 			local Position = EndPosition - EndPosition
