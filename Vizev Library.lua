@@ -59,7 +59,6 @@ function Library:CreateFrame(Name: string?)
 	
 	Frame.InputEnded:Connect(function(Input)
 		if Input.UserInputType ~= Enum.UserInputType.None and not FrameTouched then
-			Frame.Position = Frame.Position
 		end
 	end)
 end
