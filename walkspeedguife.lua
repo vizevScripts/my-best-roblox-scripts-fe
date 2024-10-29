@@ -34,6 +34,8 @@ ThisImage.BorderSizePixel = 0
 ThisImage.Position = UDim2.new(0.210597828, 0, 0.371638149, 0)
 ThisImage.Size = UDim2.new(0, 525, 0, 374)
 ThisImage.Image = "rbxassetid://935105946"
+ThisImage.Active = true
+ThisImage.Draggable = true
 
 UICorner.CornerRadius = UDim.new(0, 20)
 UICorner.Parent = ThisImage
@@ -110,52 +112,6 @@ Open.TextWrapped = true
 UICorner_5.CornerRadius = UDim.new(0, 110)
 UICorner_5.Parent = Open
 
--- Scripts:
-
-local function NYQPREF_fake_script() -- ThisImage.Drag 
-	local script = Instance.new('LocalScript', ThisImage)
-
-	local UserInputService = game:GetService("UserInputService")
-	
-	local gui = script.Parent
-	
-	local dragging
-	local dragInput
-	local dragStart
-	local startPos
-	
-	local function update(input)
-		local delta = input.Position - dragStart
-		gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-	end
-	
-	gui.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-			dragging = true
-			dragStart = input.Position
-			startPos = gui.Position
-			
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then
-					dragging = false
-				end
-			end)
-		end
-	end)
-	
-	gui.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-			dragInput = input
-		end
-	end)
-	
-	UserInputService.InputChanged:Connect(function(input)
-		if input == dragInput and dragging then
-			update(input)
-		end
-	end)
-end
-coroutine.wrap(NYQPREF_fake_script)()
 local function TTKY_fake_script() -- Close.Script 
 	local script = Instance.new('Script', Close)
 
@@ -166,6 +122,7 @@ local function TTKY_fake_script() -- Close.Script
 	end)
 end
 coroutine.wrap(TTKY_fake_script)()
+
 local function XHZUC_fake_script() -- SpeedChangerGuibyVizev.LocalScript 
 	local script = Instance.new('LocalScript', SpeedChangerGuibyVizev)
 
