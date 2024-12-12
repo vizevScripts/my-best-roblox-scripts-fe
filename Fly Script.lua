@@ -2,11 +2,11 @@
 --|| For R6/R15 Rigs.   ||--
 --\\________________// Made by Me (@mrNugget34284320) Version 0.1
 
-local Player = game:GetService('Players').LocalPlayer:: Player
-local Character = Player.Character
+local Player = game:GetService('Players').LocalPlayer:: Player -- // Own Player (You)
+local Character = Player.Character -- // Player's Character
+local Mouse = Player:GetMouse() -- // Player's Mouse
 local HrP = Character:FindFirstChild('HumanoidRootPart')
-
-local Camera = workspace.CurrentCamera
+local Camera = workspace.CurrentCamera -- // Player's Camera
 
 local Flying: boolean = false
 
@@ -19,36 +19,36 @@ local BodyG = Instance.new('BodyGyro', HrP)
 
 BodyG.CFrame = CFrame.new(15, 15, 15)
 BodyG.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
+
+BodyG.D = 999
 BodyG.P = 3990
 
-local function GetWalkMagnitude()
-	if Character:FindFirstChildOfClass('Humanoid').MoveDirection.Magnitude > 0 then
-		return true
-	end
-	if Character:FindFirstChildOfClass('Humanoid').MoveDirection.Magnitude < 0.1 then
-		return false
-	end
-end
-
-Character:FindFirstChildOfClass('Humanoid').WalkSpeed = 27
-
-while wait() do
-	if GetWalkMagnitude() and not Flying then
+Mouse.KeyDown:Connect(function(Key)
+	Key = Key:lower()
+	if Key == "w" or Key == "a" or Key == "s" or Key == "d" and not Flying then
 		Flying = true
 		
-		if Flying then
-			HrP.Anchored = false
+		while Flying do
+			wait()
 			
-			BodyV.Velocity = Camera.CoordinateFrame.LookVector * Character:FindFirstChildOfClass('Humanoid').WalkSpeed
-			BodyG.CFrame = CFrame.new(55, 55, 55)
+			HrP.Anchored = false
+
+			BodyV.Velocity = Camera.CFrame.LookVector * Character:FindFirstChildOfClass('Humanoid').WalkSpeed
+			BodyG.CFrame = Camera.CFrame
 		end
 	end
+end)
+
+Mouse.KeyUp:Connect(function(Key)
+	Key = Key:lower()
 	
-	if not GetWalkMagnitude() and Flying then
+	if Key == "w" or Key == "a" or Key == "s" or Key == "d" and Flying then
 		Flying = false
 		
-		if not Flying then
+		while not Flying do
+			wait()
+			
 			HrP.Anchored = true
 		end
 	end
-end
+end)
