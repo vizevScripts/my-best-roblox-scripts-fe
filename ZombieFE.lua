@@ -14,7 +14,7 @@ local hitpunishzombieanimation=humanoid:LoadAnimation(killeranimations.swing)
 local deadzombieanimation=humanoid:LoadAnimation(killeranimations.death)
 local zombieattack=false local readytorage=false local youcanusefesounds=false
 local ragesound local attacksound local attacksound1
-local function checkIfYouCanUseZombieFESounds() local youCanUseFESounds=game:GetService("SoundService").RespectFilteringEnabled if youCanUseFESounds then print("SUCCESS!") return true else warn("Sorry but you can't use fe sounds! [SS's Filtering Enabled Boolean: false]") return false end end
+local function checkIfYouCanUseZombieFESounds() local youCanUseFESounds=game:GetService("SoundService").RespectFilteringEnabled if not youCanUseFESounds then print("SUCCESS!") return true else warn("Sorry but you can't use fe sounds! [SS's Filtering Enabled Boolean: true]") return false end end
 if _G.UseFEZombieSounds then if checkIfYouCanUseZombieFESounds() then youcanusefesounds=true local rageSound=Instance.new("Sound",rootPart) rageSound.SoundId="http://www.roblox.com/asset/?id=25954407" rageSound.PlaybackSpeed=0.847 local attackSound=Instance.new("Sound",rootPart) attackSound.SoundId="rbxassetid://131138832" attackSound.PlaybackSpeed=0.8 local attackSound2=Instance.new("Sound",rootPart) attackSound2.SoundId="rbxassetid://131138828" attackSound2.PlaybackSpeed=0.8 ragesound=rageSound attacksound=attackSound attacksound1=attackSound2 end end
 local function fakeattack() if not zombieattack then zombieattack=true hitpunishzombieanimation:Play() hitpunishzombieanimation:AdjustSpeed(2) wait(1) zombieattack=false end end
 local animatescript=zombiecharacter:FindFirstChild("Animate") if animatescript then animatescript:Destroy() end
