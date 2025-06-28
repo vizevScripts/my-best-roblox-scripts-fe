@@ -1,5 +1,5 @@
 local function checkforrobloxstudio() local runInStudio=game:GetService("RunService"):IsStudio() if runInStudio then script.Disabled=true error("Please run this script with lua executor!")  end end checkforrobloxstudio()
-local function checkforscripttype() local isClient=game:GetService("RunService"):IsClient() local isServer=game:GetService("RunService"):IsServer() if isClient and not isServer then return "Client" end if isServer and not isClient then return "Server" end end local scripttype=checkforscripttype() if scripttype=="Client" then print("You're running this script as a client script") else print("You're running this script as a server script") end
+local function checkforscripttype() local isClient=game:GetService("RunService"):IsClient() local isServer=game:GetService("RunService"):IsServer() if isClient and not isServer then return "Client" end if isServer and not isClient then return "Server" end end local scripttype=checkforscripttype() if scripttype=="Client" then print("You're running this script as a client script") else if scripttype=="Server" then print("You're running this script as a server script") end end
 local players=game:GetService("Players")
 local youzombieplayer=players.LocalPlayer
 local zombiecharacter=youzombieplayer.Character
