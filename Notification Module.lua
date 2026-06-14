@@ -2,7 +2,7 @@
 	Module by @mrNugget34284320 (in Roblox)
 			--Functions:--
 	--Notification:CreateNotification(string Title, string Text, Duration)
-	--
+	--Notification:SetSoundType(string SoundType)
 				------------
 		--I hate people who steals my scripts and edits credits on the script.
 ]]
@@ -38,80 +38,74 @@ WarningSound.Volume = .5
 local NotificationSound = Instance.new("Sound", FolderOfSounds)
 NotificationSound.SoundId = "rbxassetid://131661992591924"
 NotificationSound.Volume = 5
+local SoundType = "Warning"
 
 function Notification:CreateNotification(Title: string?, Text: string?, Duration)
-	local Notice = {}
-	local SoundType = "Warning"
-	
-	function Notice:StartNotification()
-		local Frame = Instance.new('Frame', ThisNotificationGui)
-		Frame.Name = Player.Name.."'s Notification"
-		Frame.Size = UDim2.new(0, 454,0, 88)
-		Frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-		Frame.Position = UDim2.new(-0.607, 0,0.008, 0)
+	local Frame = Instance.new('Frame', ThisNotificationGui)
+	Frame.Name = Player.Name.."'s Notification"
+	Frame.Size = UDim2.new(0, 454,0, 88)
+	Frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	Frame.Position = UDim2.new(-0.607, 0,0.008, 0)
 
-		local text = Instance.new("TextLabel", Frame)
-		text.Name = "Text"
-		text.BackgroundTransparency = 1
-		text.Position = UDim2.new(0.026, 0,0.496, 0)
-		text.TextScaled = true
-		text.Size = UDim2.new(0, 419,0, 38)
-		text.TextColor3 = Color3.fromRGB(0, 0, 0)
-		text.Text = "Text"
+	local text = Instance.new("TextLabel", Frame)
+	text.Name = "Text"
+	text.BackgroundTransparency = 1
+	text.Position = UDim2.new(0.026, 0,0.496, 0)
+	text.TextScaled = true
+	text.Size = UDim2.new(0, 419,0, 38)
+	text.TextColor3 = Color3.fromRGB(0, 0, 0)
+	text.Text = "Text"
 
-		local title = Instance.new("TextLabel", Frame)
-		title.Name = "Title"
-		title.BackgroundTransparency = 1
-		title.Position = UDim2.new(0.026, 0,0.064, 0)
-		title.TextScaled = true
-		title.Size = UDim2.new(0, 419,0, 38)
-		title.TextColor3 = Color3.fromRGB(0, 0, 0)
-		title.Text = "Title"
-		
-		if SoundType == "Warning" then
-			WarningSound:Play()
-		elseif SoundType == "Notification" then
-			NotificationSound:Play()
-		end
+	local title = Instance.new("TextLabel", Frame)
+	title.Name = "Title"
+	title.BackgroundTransparency = 1
+	title.Position = UDim2.new(0.026, 0,0.064, 0)
+	title.TextScaled = true
+	title.Size = UDim2.new(0, 419,0, 38)
+	title.TextColor3 = Color3.fromRGB(0, 0, 0)
+	title.Text = "Title"
 
-		Start = true
-
-		NotificationFrame = Frame
-		NotificationText = text
-		NotificationTitle = title
-
-		UICorner.Parent = Frame
-
-		if Start then
-			NotificationFrame:TweenPosition(UDim2.new(-0.071, 0,0.012, 0)) 
-		end
-
-		if not Duration then 
-			Duration = 5 
-			warn("You didn't set a duration")
-		end
-
-		if Duration < 0.01 then NotificationGui:Destroy() end
-
-		NotificationTitle.Text = Title
-		NotificationText.Text = Text
-
-		wait(Duration)
-
-		NotificationFrame:TweenPosition(UDim2.new(-0.607, 0,0.008, 0))
-
-		Start = false
+	if SoundType == "Warning" then
+		WarningSound:Play()
+	elseif SoundType == "Notification" then
+		NotificationSound:Play()
 	end
-	
-	function Notice:SetNotificationSound(NoticeSoundType)
-		if NoticeSoundType == "Warning" then
-			SoundType = "Warning"
-		elseif NoticeSoundType == "Notification" then
-			SoundType = "Notification"
-		end
+
+	Start = true
+
+	NotificationFrame = Frame
+	NotificationText = text
+	NotificationTitle = title
+
+	UICorner.Parent = Frame
+
+	if Start then
+		NotificationFrame:TweenPosition(UDim2.new(-0.071, 0,0.012, 0)) 
 	end
-	
-	return Notice
+
+	if not Duration then 
+		Duration = 5 
+		warn("You didn't set a duration")
+	end
+
+	if Duration < 0.01 then NotificationGui:Destroy() end
+
+	NotificationTitle.Text = Title
+	NotificationText.Text = Text
+
+	wait(Duration)
+
+	NotificationFrame:TweenPosition(UDim2.new(-0.607, 0,0.008, 0))
+
+	Start = false
+end
+
+function Notification:SetNotificationSound(NoticeSoundType: string?)
+	if NoticeSoundType == "Warning" then
+		SoundType = "Warning"
+	elseif NoticeSoundType == "Notification" then
+		SoundType = "Notification"
+	end
 end
 
 print([[
