@@ -2,7 +2,7 @@
 	Module by @mrNugget34284320 (in Roblox)
 			--Functions:--
 	--Notification:CreateNotification(string Title, string Text, Duration)
-	--Notification:SetSoundType(string SoundType)
+	--Notification:SetNotificationSound(string NoticeSoundType)
 				------------
 		--I hate people who steals my scripts and edits credits on the script.
 ]]
