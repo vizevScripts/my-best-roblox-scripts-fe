@@ -1,5 +1,5 @@
 --[[
-NOTICE: MADE BY VIZEV
+NOTICE: MADE BY ISLAM (@mrNugget34284320)
 ALL SCRIPTS ARE MINE!
 		-FE Random State-
 ]]
