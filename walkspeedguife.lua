@@ -1,7 +1,4 @@
--- Gui to Lua
--- Version: 3.2
-
--- Instances:
+-MADE BY ISLAM (@mrNugget34284320) (Gui to Lua plugin used)
 
 local SpeedChangerGuibyVizev = Instance.new("ScreenGui")
 local ThisImage = Instance.new("ImageLabel")
