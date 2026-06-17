@@ -3,7 +3,7 @@
 / __)(_  _)(_  _)    (  _ \(  )(  )( \( )
 \__ \ _)(_   )(       )   / )(__)(  )  ( 
 (___/(____) (__)     (_)\_)(______)(_)\_)
-	-Scripted by Vizev (@mrNugget34284320 in Roblox)-
+	-Scripted by Islam (@mrNugget34284320 in Roblox)-
 		-For Doge Hub-
 ]]
 
