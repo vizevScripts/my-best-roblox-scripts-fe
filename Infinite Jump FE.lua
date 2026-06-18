@@ -1,4 +1,4 @@
---[[Made by mrNugget34284320 (Vizev)
+--[[Made by mrNugget34284320 (Islam)
 	--Uploaded to Github.com--
 	  --Infinite Jump FE--
 ]]
