@@ -88,8 +88,8 @@ ScpPanicTool.Unequipped:Connect(function()
 end)
 
 local ScpRunTool = Instance.new("Tool", Scp096Backpack)
-ScpRunTool.Name = "Scp-096 Panic"
-ScpRunTool.ToolTip = "SCP-096 Panic"
+ScpRunTool.Name = "SCP-096 Run Anim"
+ScpRunTool.ToolTip = "SCP-096 Run"
 ScpRunTool.RequiresHandle = false
 ScpRunTool.CanBeDropped = false
 
@@ -138,6 +138,30 @@ while wait() do
 		if ReadyToAttack then
 			Scp096Humanoid.WalkSpeed = 50
 			StartToFling()
+		end
+		if Scp096Humanoid.RigType == Enum.HumanoidRigType.R6 then
+			if ReadyToAttack then
+				ReadyToAttack = false
+			end
+			if Scp096Character:FindFirstChild("scp096 cry") or Scp096Backpack:FindFirstChild("scp096 cry") then
+				local SCPAnimTool = Scp096Character:FindFirstChild("scp096 cry") or Scp096Backpack:FindFirstChild("scp096 cry")
+				SCPAnimTool:Destroy()
+			end
+			if Scp096Character:FindFirstChild("Scp-096 Panic") or Scp096Backpack:FindFirstChild("Scp-096 Panic") then
+				local SCPAnimTool = Scp096Character:FindFirstChild("Scp-096 Panic") or Scp096Backpack:FindFirstChild("Scp-096 Panic")
+				SCPAnimTool:Destroy()
+			end
+			if Scp096Character:FindFirstChild("SCP-096 Run Anim") or Scp096Backpack:FindFirstChild("SCP-096 Run Anim") then
+				local SCPAnimTool = Scp096Character:FindFirstChild("SCP-096 Run Anim") or Scp096Backpack:FindFirstChild("SCP-096 Run Anim")
+				SCPAnimTool:Destroy()
+			end
+			game:GetService("StarterGui"):SetCore("SendNotification", {
+				Title = "R15 only!";
+				Text = "Your character is R6 rig type. Use R15 rig type!";
+				Duration = 10;
+			})
+			Scp096Humanoid.Health = 0
+			break
 		end
 	end
 end
