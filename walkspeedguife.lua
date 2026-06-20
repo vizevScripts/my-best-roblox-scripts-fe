@@ -1,4 +1,4 @@
--MADE BY ISLAM (@mrNugget34284320) (Gui to Lua plugin used)
+--MADE BY ISLAM (@mrNugget34284320) (Gui to Lua plugin used)
 
 local SpeedChangerGuibyVizev = Instance.new("ScreenGui")
 local ThisImage = Instance.new("ImageLabel")
