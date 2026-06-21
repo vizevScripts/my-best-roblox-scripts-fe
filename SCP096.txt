@@ -142,7 +142,7 @@ local function StartToFling()
 					repeat wait()
 						BodyThrust.Location = NPCPart.Position
 						Scp096HRP.CFrame = CFrame.new(Scp096HRP.Position, NPCPart.Position)
-						Scp096HRP.Velocity = Scp096HRP.CFrame.LookVector * 9999
+						Scp096HRP.Velocity = ((Scp096HRP.CFrame.LookVector * 100) - (NPCPart.CFrame.LookVector * 50)) * 20
 					until NPCHumanoid.Health == 0 and not NPCPart
 					BodyThrust:Destroy()
 					ReadyToAttack = false
@@ -175,8 +175,8 @@ while wait() do
 				local SCPAnimTool = Scp096Character:FindFirstChild("SCP-096 Run Anim") or Scp096Backpack:FindFirstChild("SCP-096 Run Anim")
 				SCPAnimTool:Destroy()
 			end
-			CreateNotification("Your character is R6 rig type. Use R15 rig type!", "W")
 			Scp096Humanoid.Health = 0
+			CreateNotification("Your character is R6 rig type. Use R15 rig type!", "W")
 			break
 		end
 	end
