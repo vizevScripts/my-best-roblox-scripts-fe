@@ -108,9 +108,9 @@ function Notification:SetNotificationSound(NoticeSoundType: string?)
 	end
 end
 
-print([[
-	UPDATED! v0.3
-	Made by mrNugget34284320
-]])
+
+
+
+
 
 return Notification
