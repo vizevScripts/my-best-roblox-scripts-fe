@@ -7,6 +7,24 @@
 
 ]]
 
+repeat
+	wait()
+until game:IsLoaded()
+
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/vizevScripts/my-best-roblox-scripts-fe/refs/heads/main/Notification%20Module.lua"))()
+local function CreateNotification(Message, SoundType)
+	if SoundType == "W" then
+		Notification:SetNotificationSound("Warning")
+	elseif SoundType == "N" then
+		Notification:SetNotificationSound("Notification")
+	elseif not SoundType or SoundType and SoundType ~= "W" or SoundType ~= "N" then
+		SoundType = "N"
+	end
+	Notification:CreateNotification("From SCP-096 script: ", Message, 5)
+end
+
+CreateNotification("Hi there! Please wait for SCP-096 FE script!", "N")
+
 local Players = game:GetService("Players")
 local Scp096Player = Players.LocalPlayer
 local Scp096Backpack = Scp096Player:FindFirstChildOfClass("Backpack")
@@ -117,15 +135,16 @@ local function StartToFling()
 			local NPCHumanoid = NPC:FindFirstChildOfClass("Humanoid")
 			local NPCPart = NPC:FindFirstChild("HumanoidRootPart") or NPC:FindFirstChild("Head")
 			if (Scp096HRP.Position - NPCPart.Position).Magnitude < 15 then
-				if not Scp096HRP:FindFirstChild("Thrust") then
-					local Thrust = Instance.new("BodyThrust", Scp096HRP)
-					Thrust.Name = "Thrust"
-					Thrust.Force = Vector3.new(math.huge, math.huge, math.huge)
+				if not Scp096HRP:FindFirstChild("BodyThrust") then
+					local BodyThrust = Instance.new("BodyThrust")
+					BodyThrust.Name = "BodyThrust"
+					BodyThrust.Force = Vector3.new(999, 999, 999)
 					repeat wait()
-						Thrust.Location = NPCPart.Position
-						Scp096HRP.CFrame = NPCPart.CFrame
-					until NPCHumanoid.Health == 0
-					Thrust:Destroy()
+						BodyThrust.Location = NPCPart.Position
+						Scp096HRP.CFrame = CFrame.new(Scp096HRP.Position, NPCPart.Position)
+						Scp096HRP.Velocity = Scp096HRP.CFrame.LookVector * 9999
+					until NPCHumanoid.Health == 0 and not NPCPart
+					BodyThrust:Destroy()
 					ReadyToAttack = false
 				end
 			end
@@ -136,7 +155,8 @@ end
 while wait() do
 	if Scp096Player and Scp096Character and Scp096Humanoid and Scp096Humanoid.Health > 0 and Scp096HRP then
 		if ReadyToAttack then
-			Scp096Humanoid.WalkSpeed = 50
+			Scp096Humanoid.WalkSpeed = 85
+			Scp096Humanoid.JumpPower = 180
 			StartToFling()
 		end
 		if Scp096Humanoid.RigType == Enum.HumanoidRigType.R6 then
@@ -155,11 +175,7 @@ while wait() do
 				local SCPAnimTool = Scp096Character:FindFirstChild("SCP-096 Run Anim") or Scp096Backpack:FindFirstChild("SCP-096 Run Anim")
 				SCPAnimTool:Destroy()
 			end
-			game:GetService("StarterGui"):SetCore("SendNotification", {
-				Title = "R15 only!";
-				Text = "Your character is R6 rig type. Use R15 rig type!";
-				Duration = 10;
-			})
+			CreateNotification("Your character is R6 rig type. Use R15 rig type!", "W")
 			Scp096Humanoid.Health = 0
 			break
 		end
